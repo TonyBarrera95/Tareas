@@ -11,7 +11,6 @@ const leerDB = () => {
         return null
     }
     const info = JSON.parse(fs.readFileSync(archivo, {encoding: 'utf-8'}))
-    console.log(info)
 
     return info
 

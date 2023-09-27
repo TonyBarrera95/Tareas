@@ -1,0 +1,1 @@
+'En esta carpeta se almacena la data de la APP'

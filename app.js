@@ -13,11 +13,11 @@ const main = async () => {
 let opt = ''
 const tareas = new Tareas();
 const tareasDB = leerDB();
+
 if(tareasDB){
-    // ""
+    tareas.cargarTareasFromArray(tareasDB)
 }
 
-await inquirerPausa()
 
 do {
     opt = await inquirerMenu();
@@ -39,7 +39,7 @@ do {
     }
 
 
-    // guardarDB( tareas.listadoArr)
+    guardarDB( tareas.listadoArr)
 
     if (opt !== '0' ) await inquirerPausa()
 
