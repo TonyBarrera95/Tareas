@@ -22,7 +22,7 @@ if(tareasDB){
 do {
     opt = await inquirerMenu();
 
-
+    
     switch(opt){
         case '1' : 
 
@@ -32,12 +32,21 @@ do {
         break;
 
         case '2' :
-            console.log(tareas._listado)
+            tareas.listadoCompleto()
+
+        break;
+
+        case '3' :
+            tareas.tareasPendientesCompletadas(true)
+
+        break;
+
+        case '4' :
+            tareas.tareasPendientesCompletadas(false)
 
         break;
 
     }
-
 
     guardarDB( tareas.listadoArr)
 

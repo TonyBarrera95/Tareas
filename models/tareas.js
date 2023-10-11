@@ -1,4 +1,5 @@
 const Tarea = require('./tarea')
+require('colors')
 
 class Tareas {
 
@@ -17,7 +18,7 @@ class Tareas {
 
     cargarTareasFromArray( tareasDB = []){
 
-        tareasDB.forEach(tarea => {
+        tareasDB.forEach( tarea => {
            this._listado[tarea.id] = tarea;
         })
         
@@ -29,6 +30,36 @@ class Tareas {
         this._listado[tarea.id] = tarea;
     }
 
+    listadoCompleto() {
+        console.log()
+        this.listadoArr.forEach( (llave, i) => {
+            // el segundo parametro de el forEach corresponde al indice- 
+            let impre = "Pendiente".red
+            if (llave.completadoEn){
+                impre = "Completado".green
+            } 
+            console.log(`${(i+1).toString().green}${'.'.green} ${llave.desc}  ${'::'.cyan}  ${impre}`)
+        })
+    }
+
+    tareasPendientesCompletadas(completadas){
+        console.log()
+        let i = 1
+        this.listadoArr.forEach( llave => {
+
+            if (llave.completadoEn && completadas){
+                console.log(`${(i).toString().green}${'.'.green} ${llave.desc}`)
+                i++
+            } else if (llave.completadoEn == null && completadas == false){
+            console.log(`${(i).toString().green}${'.'.green} ${llave.desc}`)
+            i++ 
+        }
+        })  
+    }
+
 }
+
+
+
 
 module.exports = Tareas;
