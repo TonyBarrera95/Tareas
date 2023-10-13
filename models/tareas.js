@@ -16,6 +16,12 @@ class Tareas {
         this._listado = {}
     }
 
+    borrarTareas(id = ''){
+        if(this._listado[id]){
+            delete(this._listado[id])
+        }
+    }
+
     cargarTareasFromArray( tareasDB = []){
 
         tareasDB.forEach( tarea => {
@@ -48,10 +54,10 @@ class Tareas {
         this.listadoArr.forEach( llave => {
 
             if (llave.completadoEn && completadas){
-                console.log(`${(i).toString().green}${'.'.green} ${llave.desc}`)
+                console.log(`${(i + '.').green} ${llave.desc} :: ${llave.completadoEn.toString().green}`)
                 i++
             } else if (llave.completadoEn == null && completadas == false){
-            console.log(`${(i).toString().green}${'.'.green} ${llave.desc}`)
+            console.log(`${(i + '.').green} ${llave.desc} :: ${'Pendientes'.red} `)
             i++ 
         }
         })  
