@@ -4,7 +4,8 @@ const { inquirerMenu,
     inquirerPausa,
     inputInquirer,
     listadoTareasBorrar,
-    confirmar
+    confirmar,
+    mostrarListadoCheckList
 
 } = require('./helpers/inquirer');
 const Tareas = require('./models/tareas')
@@ -49,7 +50,8 @@ const main = async () => {
                 break;
 
             case '5':
-                console.log('Fuera de servicio'.red)
+                const ids = await mostrarListadoCheckList(tareas.listadoArr)
+                tareas.toggleCompletadas(ids)
 
                 break;
 
@@ -57,7 +59,7 @@ const main = async () => {
 
                 const id = await listadoTareasBorrar(tareas.listadoArr)
                 if (id !== '0') {
-                    const ok = await confirmar('¿Seguro desea borrar la tarea?')
+                    const ok = await confirmar('\n ¿Seguro desea borrar la tarea?')
                     if (ok) {
                         tareas.borrarTareas(id)
                         console.log('Su tarea se ha eliminado exitosamente')
@@ -72,8 +74,6 @@ const main = async () => {
         if (opt !== '0') await inquirerPausa()
 
     } while (opt !== '0');
-
-
 }
 
 main();
